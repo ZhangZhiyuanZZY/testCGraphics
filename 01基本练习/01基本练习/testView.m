@@ -9,7 +9,31 @@
 #import "testView.h"
 
 @implementation testView
-//
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        NSLog(@"%s", __FUNCTION__);
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        NSLog(@"%s", __FUNCTION__);
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    NSLog(@"%s", __FUNCTION__);
+}
+
+
 - (void)drawRect:(CGRect)rect
 {
     NSLog(@"%s", __func__);
@@ -17,7 +41,17 @@
     //画线1
 //    [self drawLine];
     //贝塞尔
-    [self drawLine2];
+//    [self drawLine2];
+    [self drawLine3];
+}
+//最简洁写法
+- (void)drawLine3
+{
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    UIBezierPath *bzrPath = [UIBezierPath bezierPath];
+    [bzrPath moveToPoint:CGPointMake(50, 50)];
+    [bzrPath addLineToPoint:CGPointMake(300, 100)];
+    [bzrPath stroke];
 }
 
 - (void)drawLine2
